@@ -32,8 +32,8 @@ public class BoardUpdateExample {
 			pstmt.setString(3, "snowman.jpg");
 			pstmt.setBlob(4, new FileInputStream("src/ch20/oracle/sec07/snowman.jpg"));
 			pstmt.setInt(5, 3); // boards 테이블에 있는 게시물 번호(bno) 생성
-			// UPDATE boards SET btitle='눈사람', bcontent=?, bfilename=?, bfiledata=? WHERE
-			// bno=?
+			// UPDATE boards SET btitle='눈사람', bcontent=눈으로 만든 사람, bfilename= snowman.jpg, bfiledata= src/ch20/oracle/sec07/snowman.jpg WHERE
+			// bno=3
 
 			// SQL 문 실행
 			int rows = pstmt.executeUpdate();

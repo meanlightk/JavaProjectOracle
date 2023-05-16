@@ -28,7 +28,7 @@ public class ProcedureCallExample {
 			cstmt.setString(2, "한여름");
 			cstmt.setString(3, "12345");
 			cstmt.setInt(4, 26);
-			cstmt.setString(5, "summar@mycompany.com");
+			cstmt.setString(5, "summer@mycompany.com");
 			cstmt.registerOutParameter(6, Types.INTEGER);
 
 			// 프로시저 실행 및 리턴값 얻기
