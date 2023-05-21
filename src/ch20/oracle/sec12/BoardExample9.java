@@ -224,7 +224,7 @@ public class BoardExample9 {
 		if (menuNo.equals("1")) {
 			// boards 테이블에 게시물 정보 전체 삭제
 			try {
-				String sql = "TURNCATE TABLE boards";
+				String sql = "TRUNCATE TABLE boards";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.executeUpdate();
 				pstmt.close();

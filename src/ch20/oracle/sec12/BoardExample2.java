@@ -29,6 +29,7 @@ public class BoardExample2 {
 		String menuNo = scanner.nextLine();
 		System.out.println();
 
+		// 메뉴 변경
 		switch (menuNo) {
 		case "1" -> create();
 		case "2" -> read();
