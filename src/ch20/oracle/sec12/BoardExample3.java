@@ -20,7 +20,7 @@ public class BoardExample3 {
 			// JDBC Driver 등록
 			Class.forName("oracle.jdbc.OracleDriver");
 
-			// Oracle에 연결하기 -> 연결주소, id, password
+			// 연결하기
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xe", "javaproject", "12345");
 
 		} catch (Exception e) {

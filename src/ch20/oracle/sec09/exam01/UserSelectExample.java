@@ -36,13 +36,13 @@ public class UserSelectExample {
 				user.setUserPassword(rs.getString("userpassword"));
 				user.setUserAge(rs.getInt(4));	// 컬럼 순번을 이용
 				user.setUserEmail(rs.getString(5));	// 컬럼 순번을 이용
-				System.out.println("user");
+				System.out.println(user);
 			} else {		// 데이터 행을 가져오지 않았을 경우
-				System.out.println("사용자 아이딕 존재하지 않음");
+				System.out.println("사용자 아이디가 존재하지 않음");
 			}
 			rs.close();
 
-			// PreparedStatement닫기
+			// PreparedStatement 닫기
 			pstmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();

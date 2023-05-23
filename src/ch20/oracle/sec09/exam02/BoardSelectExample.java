@@ -33,7 +33,6 @@ public class BoardSelectExample {
 			// SQL 문 실행 후, ResultSet을 통해 데이터 읽기
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-
 				// 데이터 행을 읽고 Board 객체 생성
 				Board board = new Board();
 				board.setBno(rs.getInt("bno"));
@@ -45,6 +44,9 @@ public class BoardSelectExample {
 				board.setBfiledata(rs.getBlob("bfiledata"));
 
 				// 콘솔에 출력
+				System.out.println(board);
+
+				// 파일로 저장
 				Blob blob = board.getBfiledata();
 				if (blob != null) {
 					InputStream is = blob.getBinaryStream();
@@ -52,7 +54,7 @@ public class BoardSelectExample {
 					is.transferTo(os);
 					os.flush();
 					os.close();
-					os.close();
+					is.close();
 				}
 
 			}
