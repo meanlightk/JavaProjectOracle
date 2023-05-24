@@ -4,6 +4,7 @@ import java.util.Date;
 
 import lombok.Data;
 
+// 해당 테이블에서는 bfilename, bfiledata 제외
 @Data
 public class Board {
 

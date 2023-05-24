@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class BoardExample2 {
 
-	// Field
+	// Field => 키보드 입력을 받기 위한 Scanner 필드 추가
 	private Scanner scanner = new Scanner(System.in);
 
 	// Constructor
 
-	// Method
+	// Method => 키보드 입력을 받기 위해 nextLine() 메소드 호출, 선택 메뉴에 다라 메소드로 호출
 	public void list() {
 		System.out.println();
 		System.out.println("[게시물 목록]");

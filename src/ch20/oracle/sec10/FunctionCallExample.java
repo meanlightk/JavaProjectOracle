@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Types;
 
+// 함수 호출
 public class FunctionCallExample {
 
 	public static void main(String[] args) {
@@ -23,8 +24,9 @@ public class FunctionCallExample {
 
 			// ? 값 지정 및 리턴 타입 지정
 			cstmt.registerOutParameter(1, Types.INTEGER);
-			cstmt.setString(2, "winter");
-			cstmt.setString(3, "12345");
+			// 첫번째 ?는 리턴값임을 지정, user_login() 함수의 리턴타입: PLS_INTEGER
+			cstmt.setString(2, "winter");	// 함수의 첫 번째 매개값
+			cstmt.setString(3, "12345");	// 함수의 두 번째 매개값
 
 			// 함수 실행 및 리턴값 얻기
 			cstmt.execute();

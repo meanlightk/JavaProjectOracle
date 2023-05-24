@@ -11,10 +11,12 @@ import ch20.oracle.sec09.exam02.Board;
 
 public class BoardExample3 {
 
+	// Field
 	private Scanner scanner = new Scanner(System.in);
+	// DB와 연결
 	private Connection conn;
 
-	// Constructor
+	// Constructor => 생성자에서 DB연결
 	public BoardExample3() {
 		try {
 			// JDBC Driver 등록
@@ -29,14 +31,14 @@ public class BoardExample3 {
 		}
 	}
 
-	// Method
+	// Method => boards 테이블에서 게시물 정보들을 가져와서 게시물 목록으로 출력하도록 list() 메소드 수정
 	public void list() {
 		// 타이틀 및 컬럼명 출력
 		System.out.println();
 		System.out.println("[게시물 목록]");
-		System.out.println("-----------------------------------");
+		System.out.println("---------------------------------------------");
 		System.out.printf("%-6s%-12s%-16s%-40s\n", "no", "writer", "date", "title");
-		System.out.println("-----------------------------------");
+		System.out.println("---------------------------------------------");
 
 		// boards 테이블에서 게시물 정보를 가져와서 출력하기
 		try {
@@ -56,6 +58,7 @@ public class BoardExample3 {
 			}
 
 			rs.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			exit();
@@ -65,14 +68,20 @@ public class BoardExample3 {
 		mainMenu();
 	}
 
-// 이하 동일
-
 	public void mainMenu() {
 		System.out.println();
 		System.out.println("-----------------------------------");
 		System.out.println("메인메뉴 : 1.Create | 2.Read | 3.Clear | 4.Exit");
 		System.out.print("메뉴 선택: ");
+		String menuNo = scanner.nextLine();
 		System.out.println();
+
+		switch (menuNo) {
+		case "1" -> create();
+		case "2" -> read();
+		case "3" -> clear();
+		case "4" -> exit();
+		}
 	}
 
 	public void create() {
@@ -95,7 +104,8 @@ public class BoardExample3 {
 	}
 
 	public static void main(String[] args) {
-		BoardExample2 boardExample = new BoardExample2();
+		BoardExample3 boardExample = new BoardExample3();
 		boardExample.list();
 	}
+
 }

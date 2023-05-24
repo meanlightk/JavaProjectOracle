@@ -29,14 +29,14 @@ public class BoardExample6 {
 		}
 	}
 
-	// Method
+	// Method => boards 테이블에서 게시물 정보들을 가져와서 게시물 목록으로 출력하도록 list() 메소드 수정
 	public void list() {
 		// 타이틀 및 컬럼명 출력
 		System.out.println();
 		System.out.println("[게시물 목록]");
-		System.out.println("-----------------------------------");
+		System.out.println("---------------------------------------------");
 		System.out.printf("%-6s%-12s%-16s%-40s\n", "no", "writer", "date", "title");
-		System.out.println("-----------------------------------");
+		System.out.println("---------------------------------------------");
 
 		// boards 테이블에서 게시물 정보를 가져와서 출력하기
 		try {
@@ -54,8 +54,8 @@ public class BoardExample6 {
 				System.out.printf("%-6s%-12s%-16s%-40s \n", board.getBno(), board.getBwriter(), board.getBdate(),
 						board.getBtitle());
 			}
-
 			rs.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			exit();
@@ -65,14 +65,20 @@ public class BoardExample6 {
 		mainMenu();
 	}
 
-// 이하 동일
-
 	public void mainMenu() {
 		System.out.println();
 		System.out.println("-----------------------------------");
 		System.out.println("메인메뉴 : 1.Create | 2.Read | 3.Clear | 4.Exit");
 		System.out.print("메뉴 선택: ");
+		String menuNo = scanner.nextLine();
 		System.out.println();
+
+		switch (menuNo) {
+		case "1" -> create();
+		case "2" -> read();
+		case "3" -> clear();
+		case "4" -> exit();
+		}
 	}
 
 	public void create() {
@@ -82,9 +88,9 @@ public class BoardExample6 {
 		System.out.println("제목: ");
 		board.setBtitle(scanner.nextLine());
 		System.out.println("내용: ");
-		board.setBtitle(scanner.nextLine());
+		board.setBcontent(scanner.nextLine());
 		System.out.println("작성자: ");
-		board.setBtitle(scanner.nextLine());
+		board.setBwriter(scanner.nextLine());
 
 		// 보조 메뉴 출력
 		System.out.println("--------------------------------");
@@ -161,29 +167,28 @@ public class BoardExample6 {
 		list();
 	}
 
-	public void delete(Board board) {
+	private void delete(Board board) {
 
 	}
 
 	public void update(Board board) {
 		// 수정 내용 입력 받기
 		System.out.println("[수정 내용 입력]");
-		System.out.println("제목: ");
+		System.out.print("제목: ");
 		board.setBtitle(scanner.nextLine());
 		System.out.println("내용: ");
-		board.setBtitle(scanner.nextLine());
+		board.setBcontent(scanner.nextLine());
 		System.out.println("작성자: ");
 		board.setBwriter(scanner.nextLine());
 
 		// 보조 메뉴 출력
-		// 보조 메뉴 출력
 		System.out.println("-----------------------");
-		System.out.println("보조 메뉴: 1.Ok | 2.Cancle");
-		System.out.println("메뉴 선택: ");
+		System.out.println("보조 메뉴: 1.Ok | 2.Cancel");
+		System.out.print("메뉴 선택: ");
 		String menuNo = scanner.nextLine();
 		if (menuNo.equals("1")) {
-			// boards 테이블에서 게시물 정보 수정
 
+			// boards 테이블에서 게시물 정보 수정
 			try {
 				String sql = "" + "UPDATE boards SET btitle=?, bcontent=?, bwriter=? " + "WHERE bno=?";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -210,4 +215,10 @@ public class BoardExample6 {
 	public void exit() {
 		System.exit(0);
 	}
+
+	public static void main(String[] args) {
+		BoardExample6 boardExample = new BoardExample6();
+		boardExample.list();
+	}
+
 }

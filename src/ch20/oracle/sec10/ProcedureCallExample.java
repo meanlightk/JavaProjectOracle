@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Types;
-
+// 프로시저 호출
 public class ProcedureCallExample {
 
 	public static void main(String[] args) {
@@ -24,12 +24,12 @@ public class ProcedureCallExample {
 			CallableStatement cstmt = conn.prepareCall(sql);
 
 			// ? 값 지정 및 리턴 타입 지정
-			cstmt.setString(1, "summer");
-			cstmt.setString(2, "한여름");
-			cstmt.setString(3, "12345");
+			cstmt.setString(1, "summer");	// 프로시저의 첫 번째 매개값
+			cstmt.setString(2, "한여름");		// 프로시저의 두 번째 매개값
+			cstmt.setString(3, "12345");	
 			cstmt.setInt(4, 26);
 			cstmt.setString(5, "summer@mycompany.com");
-			cstmt.registerOutParameter(6, Types.INTEGER);
+			cstmt.registerOutParameter(6, Types.INTEGER); // 여섯 째 ?는 OUT값(리턴값)임을 지정
 
 			// 프로시저 실행 및 리턴값 얻기
 			cstmt.execute();
